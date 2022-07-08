@@ -4,7 +4,6 @@ import CourseSwiper from "./CourseSwiper";
 import { API_URL } from "../../utils/config";
 import CourseContent from "./CourseContent";
 import CourseHeader from "./CourseHeader";
-import CourseIntro from "./CourseIntro";
 
 import CourseDetail from "./CourseDetail";
 // import LessonList from "../courseDetail/LessonList";
@@ -15,24 +14,32 @@ const image = [
     image2: "/images/courseDetail/lesson1/chef.jpg",
     image3: "/images/courseDetail/lesson1/lesson3.jpg",
     name: "手工馬卡龍",
+    teacher: "授課教師:Ms.陳",
+    teacherFullName: "Julianna Chen",
   },
   {
     image1: "/images/courseDetail/lesson2/cookie1.jpg",
     image2: "/images/courseDetail/lesson2/chef.jpg",
     image3: "/images/courseDetail/lesson2/cookie3.jpg",
-    name: "手工餅乾製作",
+    name: "手工餅乾",
+    teacher: "授課教師:Ms.黃",
+    teacherFullName: "Makayla Huang",
   },
   {
     image1: "/images/courseDetail/lesson3/tar1.jpg",
     image2: "/images/courseDetail/lesson3/chef.jpg",
     image3: "/images/courseDetail/lesson3/tar3.jpg",
     name: "新鮮水果塔",
+    teacher: "授課教師:Ms.廖",
+    teacherFullName: "Rebecca Liao",
   },
   {
     image1: "/images/courseDetail/lesson4/cake1.jpg",
     image2: "/images/courseDetail/lesson4/chef.jpg",
     image3: "/images/courseDetail/lesson4/cake3.jpg",
     name: "新鮮生乳捲",
+    teacher: "授課教師:Ms.趙",
+    teacherFullName: "Journey Chao",
   },
 ];
 const CourseMain = () => {
@@ -62,14 +69,7 @@ const CourseMain = () => {
       <div className="mb-10">
         <CourseHeader />
       </div>
-      <div className="mb-20 ">
-        <CourseSwiper
-          lessons={lessons}
-          setSwipe={setSwipe}
-          lessonImage={lessonImage}
-          swipe={swipe}
-        />
-      </div>
+
       <CourseContent
         swipe={swipe}
         lessons={lessons}
@@ -78,7 +78,7 @@ const CourseMain = () => {
         lessonImage={lessonImage}
       />
       {detailContent === true ? (
-        <div data-aos="flip-up">
+        <div data-aos="fade-up" data-aos-duration="1800">
           <CourseDetail
             lessons={lessons}
             swipe={swipe}
@@ -89,6 +89,14 @@ const CourseMain = () => {
       ) : (
         <></>
       )}
+      <div className="mb-20 ">
+        <CourseSwiper
+          lessons={lessons}
+          setSwipe={setSwipe}
+          lessonImage={lessonImage}
+          swipe={swipe}
+        />
+      </div>
     </>
   );
 };
