@@ -13,6 +13,7 @@ import "../components/home/styles.css";
 import { Autoplay, EffectFade } from "swiper";
 import useLoading from "../utils/hooks/useLoading";
 import load from "./loading_logo.gif";
+import { useNavigate } from "react-router-dom";
 
 const s1Post = {
   title: "我們的堅持",
@@ -43,11 +44,29 @@ const s1Feature = [
 ];
 
 const Home = (props) => {
+  // useState
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const [show3, setShow3] = useState(false);
   const [show4, setShow4] = useState(false);
   const [WhileLoad, runLoad] = useLoading();
+
+  // navigate
+  const navigate = useNavigate();
+  function navigateToProduct(e) {
+    navigate("/main/product");
+    window.scrollTo({ top: 0, left: 0 });
+  }
+  function navigateToCourse(e) {
+    navigate("/main/course");
+    window.scrollTo({ top: 0, left: 0 });
+  }
+  function navigateToExpireProduct(e) {
+    navigate("/main/expireProduct");
+    window.scrollTo({ top: 0, left: 0 });
+  }
+
+  // useEffect
   useEffect(() => {
     runLoad(() => {}, 4000);
   }, [runLoad]);
@@ -79,6 +98,7 @@ const Home = (props) => {
                 modules={[Autoplay, EffectFade]}
                 className="mySwiper"
                 effect="fade"
+                style={{ width: "100%" }}
               >
                 <SwiperSlide className="object-cover h-full">
                   <img src={`/images/home/banner1.jpeg`} alt="slide" />
@@ -110,7 +130,13 @@ const Home = (props) => {
               </Swiper>
             </div>
           </section>
-          {/* ----------------------------------- 特色 ----------------------------------- */}
+{/* ----------------------------------- background image ----------------------------------- */}
+          
+          <div  style={{ 
+  backgroundImage: `url(${process.env.PUBLIC_URL}/images/home/bg1.png)`, backgroundPosition:'top', 
+ backgroundRepeat: 'no-repeat',
+ backgroundSize: 'cover'}}>
+{/* ----------------------------------- 特色 ----------------------------------- */}
           <section className="relative flex items-center min-h-screen mt-20">
             <img
               src="./images/home/cake007.png"
@@ -310,6 +336,12 @@ const Home = (props) => {
               </div>
             </div>
           </section>
+          </div>
+          {/* ---------------------------------- second bgImg---------------------------------- */}
+          <div  style={{ 
+  backgroundImage: `url(${process.env.PUBLIC_URL}/images/home/bgpic2.jpg)`, backgroundPosition:'center', 
+ backgroundRepeat: 'no-repeat',
+ backgroundSize: 'cover'}}>
           {/* ----------------------------------- QA ----------------------------------- */}
           <section className="relative">
             <img
@@ -697,7 +729,10 @@ const Home = (props) => {
                       </p>
                     </div>
                     <div className="w-2/3 px-4 md:w-auto whitespace-nowrap">
-                      <button className="w-full py-4 text-base font-medium leading-none text-center transition duration-150 bg-white px-11 hover:bg-gray-300 focus:outline-none">
+                      <button
+                        className="w-full py-4 text-base font-medium leading-none text-center transition duration-150 bg-white px-11 hover:bg-gray-300 focus:outline-none"
+                        onClick={navigateToProduct}
+                      >
                         前往查看商品
                       </button>
                     </div>
@@ -725,7 +760,10 @@ const Home = (props) => {
                       </p>
                     </div>
                     <div className="w-2/3 px-4 md:w-auto whitespace-nowrap">
-                      <button className="w-full px-8 py-4 text-base font-medium leading-none text-center transition duration-150 bg-white hover:bg-gray-300 focus:outline-none">
+                      <button
+                        className="w-full px-8 py-4 text-base font-medium leading-none text-center transition duration-150 bg-white hover:bg-gray-300 focus:outline-none"
+                        onClick={navigateToExpireProduct}
+                      >
                         前往即期品專區
                       </button>
                     </div>
@@ -754,7 +792,10 @@ const Home = (props) => {
                       </p>
                     </div>
                     <div className="w-2/3 px-4 md:w-auto whitespace-nowrap">
-                      <button className="w-full py-4 text-base font-medium leading-none text-center transition duration-150 bg-white px-11 hover:bg-gray-300 focus:outline-none">
+                      <button
+                        className="w-full py-4 text-base font-medium leading-none text-center transition duration-150 bg-white px-11 hover:bg-gray-300 focus:outline-none"
+                        onClick={navigateToCourse}
+                      >
                         前往查看課程
                       </button>
                     </div>
@@ -806,6 +847,7 @@ const Home = (props) => {
             transition={{ ease: "easeOut", duration: 2, delay: 1 }}
             className="bg-gradient-to-r pb-[5px] from-line to-transparent"
           ></motion.div>
+          </div>
           {/* 照片牆 */}
           <section className="flex flex-col items-center justify-center py-20 bg-gray-50">
             <div

@@ -28,7 +28,7 @@ function ProductDetail() {
   const [comment, setComment] = useState([]);
   const [currentUser] = useUserState();
   const [cart, setCart] = useCartState();
- 
+
   const { id } = useParams();
   const navigate = useNavigate();
   // console.log(id);
@@ -40,7 +40,7 @@ function ProductDetail() {
     setFavProduct(response.data);
     console.log("此用戶喜歡ㄉ商品", response.data);
   };
- 
+
   useEffect(() => {
     //抓這個商品資料
     let getProductDetail = async () => {
@@ -85,7 +85,7 @@ function ProductDetail() {
     }
     return elementArr;
   };
-// 加入最愛
+  // 加入最愛
   const favSwitchHandler = async () => {
     if (isFavor.length < 1) {
       //isFavor長度等於0要post
@@ -94,8 +94,8 @@ function ProductDetail() {
         user_id: currentUser.id,
         product_id: id,
       });
-        toast.success("已加入最愛");
-      
+      toast.success("已加入最愛");
+
       getFavProduct();
     } else {
       //isFavor長度大於0要delete
@@ -103,11 +103,11 @@ function ProductDetail() {
       await axios.delete(
         API_URL + `/user/favorite_product/${currentUser.id}?product_id=${id}`
       );
-      toast.info('已從最愛移除')
+      toast.info("已從最愛移除");
       getFavProduct();
     }
   };
- 
+
   return (
     <>
       {productDetail.map((v, i) => {
@@ -159,8 +159,10 @@ function ProductDetail() {
                       <Button
                         variant="outlined"
                         className="border rounded-full select-none border-line text-line"
-                        onClick={()=>{
-                          currentUser.id !=0?(favSwitchHandler()):(toast.info('請登入會員'))
+                        onClick={() => {
+                          currentUser.id != 0
+                            ? favSwitchHandler()
+                            : toast.info("請登入會員");
                         }}
                       >
                         <AiFillHeart
@@ -214,35 +216,34 @@ function ProductDetail() {
                         className="border-2 rounded-none border-sub"
                         variant="outlined"
                         onClick={() => {
-                          if(currentUser.id ==0){
-                            toast.info('請登入會員')
-                          }else{
-                             let productIndex = cart[1].findIndex(function (
-                            data,
-                            index
-                          ) {
-                            return data.name === name;
-                          });
-                          // console.log('productInx',productIndex);
-                          if (productIndex > -1) {
-                            let newCount = {
-                              ...v,
-                              count: cart[1][productIndex].count + clickCount,
-                            };
-                            let cartList = [...cart[1]];
-                            cartList[productIndex] = newCount;
-                            let newData = [cart[0], cartList];
-                            setCart(newData);
+                          if (currentUser.id == 0) {
+                            toast.info("請登入會員");
                           } else {
-                            let newCount = { ...v, count: clickCount };
-                            let cartList = [...cart[1], newCount];
-                            let newData = [cart[0], cartList];
-                            setCart(newData);
+                            let productIndex = cart[1].findIndex(function (
+                              data,
+                              index
+                            ) {
+                              return data.name === name;
+                            });
+                            // console.log('productInx',productIndex);
+                            if (productIndex > -1) {
+                              let newCount = {
+                                ...v,
+                                count: cart[1][productIndex].count + clickCount,
+                              };
+                              let cartList = [...cart[1]];
+                              cartList[productIndex] = newCount;
+                              let newData = [cart[0], cartList];
+                              setCart(newData);
+                            } else {
+                              let newCount = { ...v, count: clickCount };
+                              let cartList = [...cart[1], newCount];
+                              let newData = [cart[0], cartList];
+                              setCart(newData);
+                            }
+                            toast.success("已加入購物車");
+                            setClickCount(1);
                           }
-                          toast.success("已加入購物車");
-                          setClickCount(1);
-                          }
-                         
                         }}
                       >
                         <span className="text-black p">加入購物車</span>
@@ -252,36 +253,35 @@ function ProductDetail() {
                         className="ml-3 text-white border-2 rounded-none border-warning bg-warning"
                         variant="filled"
                         onClick={() => {
-                          if(currentUser.id===0){
-                            toast.info('請登入會員')
-                          }else{
-                              let productIndex = cart[1].findIndex(function (
-                            data,
-                            index
-                          ) {
-                            return data.name === name;
-                          });
-                          // console.log('productInx',productIndex);
-                          if (productIndex > -1) {
-                            let newCount = {
-                              ...v,
-                              count: cart[1][productIndex].count + clickCount,
-                            };
-                            let cartList = [...cart[1]];
-                            cartList[productIndex] = newCount;
-                            let newData = [cart[0], cartList];
-                            setCart(newData);
-                            navigate("/main/cart");
+                          if (currentUser.id === 0) {
+                            toast.info("請登入會員");
                           } else {
-                            let newCount = { ...v, count: clickCount };
-                            let cartList = [...cart[1], newCount];
-                            let newData = [cart[0], cartList];
-                            setCart(newData);
-                            setClickCount(1);
-                            navigate("/main/cart");
+                            let productIndex = cart[1].findIndex(function (
+                              data,
+                              index
+                            ) {
+                              return data.name === name;
+                            });
+                            // console.log('productInx',productIndex);
+                            if (productIndex > -1) {
+                              let newCount = {
+                                ...v,
+                                count: cart[1][productIndex].count + clickCount,
+                              };
+                              let cartList = [...cart[1]];
+                              cartList[productIndex] = newCount;
+                              let newData = [cart[0], cartList];
+                              setCart(newData);
+                              navigate("/main/cart");
+                            } else {
+                              let newCount = { ...v, count: clickCount };
+                              let cartList = [...cart[1], newCount];
+                              let newData = [cart[0], cartList];
+                              setCart(newData);
+                              setClickCount(1);
+                              navigate("/main/cart");
+                            }
                           }
-                          }
-                        
                         }}
                       >
                         <span className="p">立即購買</span>
@@ -303,9 +303,11 @@ function ProductDetail() {
                   <Button
                     variant="outlined"
                     className="mr-3 rounded-full select-none text-line border-line"
-                    onClick={()=>{
-                          currentUser.id !=0?(favSwitchHandler()):(toast.info('請登入會員'))
-                        }}
+                    onClick={() => {
+                      currentUser.id != 0
+                        ? favSwitchHandler()
+                        : toast.info("請登入會員");
+                    }}
                   >
                     <AiFillHeart
                       className={`icon-xl select-none rounded-full  ${
@@ -361,36 +363,34 @@ function ProductDetail() {
                     className="px-4 py-1 border-2 rounded-none border-sub"
                     variant="outlined"
                     onClick={() => {
-                      if(currentUser.id==0){
-                        toast.info('請登入會員')
-                      }else{
-                        let productIndex = cart[1].findIndex(function (
-                        data,
-                        index
-                      ) {
-                        return data.name === name;
-                      });
-                      // console.log('productInx',productIndex);
-                      if (productIndex > -1) {
-                        let newCount = {
-                          ...v,
-                          count: cart[1][productIndex].count + clickCount,
-                        };
-                        let cartList = [...cart[1]];
-                        cartList[productIndex] = newCount;
-                        let newData = [cart[0], cartList];
-                        setCart(newData);
+                      if (currentUser.id == 0) {
+                        toast.info("請登入會員");
                       } else {
-                        let newCount = { ...v, count: clickCount };
-                        let cartList = [...cart[1], newCount];
-                        let newData = [cart[0], cartList];
-                        setCart(newData);
+                        let productIndex = cart[1].findIndex(function (
+                          data,
+                          index
+                        ) {
+                          return data.name === name;
+                        });
+                        // console.log('productInx',productIndex);
+                        if (productIndex > -1) {
+                          let newCount = {
+                            ...v,
+                            count: cart[1][productIndex].count + clickCount,
+                          };
+                          let cartList = [...cart[1]];
+                          cartList[productIndex] = newCount;
+                          let newData = [cart[0], cartList];
+                          setCart(newData);
+                        } else {
+                          let newCount = { ...v, count: clickCount };
+                          let cartList = [...cart[1], newCount];
+                          let newData = [cart[0], cartList];
+                          setCart(newData);
+                        }
+                        toast.success("已加入購物車");
+                        setClickCount(1);
                       }
-                      toast.success("已加入購物車");
-                      setClickCount(1);
-                      }
-                      
-                      
                     }}
                   >
                     <span className="text-black p">加入購物車</span>
@@ -400,37 +400,34 @@ function ProductDetail() {
                     className="px-4 text-white border-2 rounded-none shadow-primary border-warning bg-warning"
                     variant="filled"
                     onClick={() => {
-                        if(currentUser.id==0){
-                          toast.info('請登入會員')
-                        }else{
-                           let productIndex = cart[1].findIndex(function (
-                        data,
-                        index
-                      ) {
-                        return data.name === name;
-                      });
-                      // console.log('productInx',productIndex);
-                      if (productIndex > -1) {
-                        let newCount = {
-                          ...v,
-                          count: cart[1][productIndex].count + clickCount,
-                        };
-                        let cartList = [...cart[1]];
-                        cartList[productIndex] = newCount;
-                        let newData = [cart[0], cartList];
-                        setCart(newData);
+                      if (currentUser.id == 0) {
+                        toast.info("請登入會員");
                       } else {
-                        let newCount = { ...v, count: clickCount };
-                        let cartList = [...cart[1], newCount];
-                        let newData = [cart[0], cartList];
-                        setCart(newData);
-                      }
-                      setClickCount(1);
-                      navigate("/main/cart");
+                        let productIndex = cart[1].findIndex(function (
+                          data,
+                          index
+                        ) {
+                          return data.name === name;
+                        });
+                        // console.log('productInx',productIndex);
+                        if (productIndex > -1) {
+                          let newCount = {
+                            ...v,
+                            count: cart[1][productIndex].count + clickCount,
+                          };
+                          let cartList = [...cart[1]];
+                          cartList[productIndex] = newCount;
+                          let newData = [cart[0], cartList];
+                          setCart(newData);
+                        } else {
+                          let newCount = { ...v, count: clickCount };
+                          let cartList = [...cart[1], newCount];
+                          let newData = [cart[0], cartList];
+                          setCart(newData);
                         }
-                          
-                      
-                     
+                        setClickCount(1);
+                        navigate("/main/cart");
+                      }
                     }}
                   >
                     <span className="p">立即購買</span>
@@ -507,12 +504,7 @@ function ProductDetail() {
 
       {/* 你可能也會喜歡 */}
       <div className="hidden mt-8 bg-sub md:block">
-        <p
-          className="pt-3 text-center h2"
-          
-        >
-          你可能也會喜歡
-        </p>
+        <p className="pt-3 text-center h2">你可能也會喜歡</p>
 
         <YouMayLikeProduct />
       </div>

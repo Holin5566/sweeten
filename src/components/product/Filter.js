@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../utils/config";
 import { clearConfigCache } from "prettier";
+//import moment from "moment";
 import { useProductState } from "../../utils/redux/hooks-redux";
 
 function Filter() {
@@ -15,7 +16,7 @@ function Filter() {
   //口味選項
   const flavorOption = allCategory?.filter((item) => String(item.id)[0] == 2);
   console.log("flavorOption", flavorOption);
-  
+
   console.log(product);
 
   useEffect(() => {

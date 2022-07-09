@@ -15,7 +15,7 @@ function MemberOrder() {
   const [orderProduct, setOrderProduct] = useState([]);
   const [currentUser] = useUserState();
   const [searchWord, setSearchWord] = useState("");
-  console.log(searchWord);
+  console.log(currentUser);
   useEffect(() => {
     //拿個人所有訂單_product
     let getOrder = async () => {
@@ -38,7 +38,7 @@ function MemberOrder() {
       setOrder(orders);
     };
     getOrder();
-  }, []);
+  }, [currentUser]);
 
   return (
     <>
@@ -69,7 +69,10 @@ function MemberOrder() {
             )}
             <div className="mb-10" data-aos="fade-right">
               {order
-                ?.filter((item) => item[0].order_info_id?.includes(searchWord))
+                ?.filter((item) => {
+                  console.log(item);
+                  return `${item[0]?.order_info_id}`.includes(searchWord);
+                })
                 ?.map((order, i) => {
                   return (
                     <>
@@ -100,7 +103,7 @@ function MemberOrder() {
                 .filter(
                   (v, i) =>
                     v[i]?.order_status_id == 1 &&
-                    v[0].order_info_id?.includes(searchWord)
+                    `${v[0].order_info_id}`?.includes(searchWord)
                 )
                 .map((order, i) => {
                   return (
@@ -134,7 +137,8 @@ function MemberOrder() {
                   (v, i) =>
                     v[i]?.order_status_id == 2 &&
                     v[0].order_info_id?.includes(searchWord)
-                ).map((order, i) => {
+                )
+                .map((order, i) => {
                   return (
                     <>
                       <div className="mt-10 shadow-md md:flex">
