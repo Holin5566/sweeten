@@ -55,7 +55,7 @@ function YouMayLikeProduct() {
               <SwiperSlide className="bg-sub">
                 <div className="">
                   <div className="overflow-hidden cursor-pointer h-36 w-44">
-                    <img src={`http://localhost:8001/public/product/${id}.jpg`} alt="product" className="object-contain "/>
+                    <img src={`http://localhost:8001/public/product/${id}.jpg`} alt="product" className=""/>
                   </div>
                  
                   <div className="text-center w-44">
