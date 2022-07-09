@@ -118,7 +118,7 @@ const MemberColloction = () => {
                         <p className="hidden md:block h4">目前活動</p>
                       </div>
 
-                      <div>
+                      <div className="w-[7rem] md:w-[10rem]">
                         <p className="mb-3 md:p">{name}</p>
                         <p className="mb-3 md:p">{price}</p>
                         <button className="px-1 text-white md:p bg-warning">
@@ -159,7 +159,7 @@ const MemberColloction = () => {
                       {/* 沒有評分 */}
 
                       {/* 移除&購買 */}
-                      <div className="flex-col md:ml-4 ">
+                      <div className="flex-col md:ml-4 w-[6rem] md:w-[8rem]">
                         <Button
                           size="sm"
                           className="flex items-center px-2 mb-3 rounded-sm md:px-4 md:p bg-warning"

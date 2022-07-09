@@ -24,13 +24,13 @@ function OrderDetail({ order }) {
                     />
                   </div>
 
-                  <div className="mx-3 md:p">
+                  <div className="mx-3 md:p w-[3rem]">
                     <p>商品</p>
                     <p className="my-2 ">價格</p>
                     <p>數量</p>
                   </div>
 
-                  <div className="mx-3 md:p">
+                  <div className="mx-3 md:p w-[7rem] md:w-[12rem]">
                     <p>{v.name}</p>
                     <p className="my-2 ">{v.price}</p>
                     <p>* {v.memo}</p>
@@ -38,7 +38,7 @@ function OrderDetail({ order }) {
                 </div>
               </div>
               {/* 抓數量 */}
-              <h3 className="self-end hidden h3 md:block">
+              <h3 className="self-end hidden h3 md:block w-[9rem]">
                 小計: {parseInt(v.price) * parseInt(v.memo)}
               </h3>
             </div>
