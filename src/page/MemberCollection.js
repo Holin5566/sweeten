@@ -196,35 +196,7 @@ const MemberColloction = () => {
                           立即購買 <AiOutlineShoppingCart className="icon-sm" />
                         </Button>
 
-                        <Button
-                          size="sm"
-                          color="amber"
-                          variant="outlined"
-                          className="px-2 rounded-sm md:p md:px-4"
-                        >
-                          <span
-                            className="flex items-center "
-                            onClick={async () => {
-                              console.log(user_id);
-                              let response = await axios.delete(
-                                `${API_URL}/user/favorite_product/${user_id}?product_id=${product_id}`
-                              );
-                              // console.log(response);
-                              toast.info("已移除收藏");
-                              axios
-                                .get(
-                                  API_URL +
-                                    `/user/favorite_product/all_data/${currentUser.id}`
-                                )
-                                .then(({ data }) => {
-                                  setMemberCollection(data);
-                                })
-                                .catch((e) => console.log(e));
-                            }}
-                          >
-                            立即購買</span>
-                            <AiOutlineShoppingCart className="icon-sm" />
-                          </Button>
+                       
 
                           <Button
                             size="sm"
