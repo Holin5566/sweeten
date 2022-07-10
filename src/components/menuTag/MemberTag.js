@@ -1,15 +1,14 @@
-import React from "react";
 import { Button } from "@material-tailwind/react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useProductState } from "../../utils/redux/hooks-redux";
 import axios from "axios";
 import { API_URL } from "../../utils/config";
-import { useNavigate } from "react-router-dom";
 
 const MotionButton = motion(Button);
 
-const Tag = ({ title, i, id }) => {
+const MemberTag = ({ title, i, id }) => {
   const [y, setY] = useState(10);
   const [product, setProduct] = useProductState();
   const navigate = useNavigate();
@@ -23,11 +22,6 @@ const Tag = ({ title, i, id }) => {
       onMouseLeave={() => setY(10)}
       onMouseEnter={() => setY(0)}
       onClick={() => {
-        // 199 是即期良品的 id => 導向即期良品頁面
-        if (id == 199) {
-          navigate("/main/expireProduct");
-          window.scrollTo({ top: 0, left: 0 });
-        }
         // 會員檔案
         if (id == 1000) {
           navigate("/main/member/information");
@@ -45,10 +39,8 @@ const Tag = ({ title, i, id }) => {
         }
         let getFlavor = async () => {
           let response = await axios.get(API_URL + `/product/category/10${i}`);
-          const list = response.data.data;
-          // console.log(list);
-          // list.forEach((item) => (item.id = item.product_id));
           setProduct(response.data.data);
+          console.log(response.data.data);
         };
         getFlavor();
       }}
@@ -58,4 +50,4 @@ const Tag = ({ title, i, id }) => {
   );
 };
 
-export default Tag;
+export default MemberTag;

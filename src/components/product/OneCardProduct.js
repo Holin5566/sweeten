@@ -2,8 +2,8 @@ import axios from "axios";
 import { React, useEffect, useState, editState } from "react";
 import { AiOutlineMessage, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { API_URL } from "../../utils/config";
+import { toast } from "react-toastify";
 
 import {
   useCartState,

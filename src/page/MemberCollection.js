@@ -21,6 +21,8 @@ import { toast } from "react-toastify";
 import { calcLength } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { clearConfigCache } from "prettier";
+import MemberMenuTag from "../components/menuTag/MemberMenuTag";
+// import MenuTag from "../components/menuTag/MenuTag";
 
 //生成評價星星
 const star = (score) => {
@@ -68,27 +70,29 @@ const MemberColloction = () => {
 
   return (
     <>
-      <div className="mx-0 ">
-        <div className="">
-          <MemberCollectionBar isOn={isOn} setIsOn={setIsOn} />
-        </div>
-        <div className="my-6">
-          <MemberSearchBar
-            searchWord={searchWord}
-            setSearchWord={setSearchWord}
-          />
-        </div>
-        <div className="pt-8 bg-white md:pt-0 md:px-10">
-          <h2 className="hidden py-2 border-b h2 md:block">
-            {isOn == 1 ? "我的收藏" : "商品評論"}
-          </h2>
-          {/* 如果內容為空會顯示 */}
-          {isOn == 1 && memberCollection.length == 0 && (
-            <h1 className="mt-4 text-center h2">尚無項目</h1>
-          )}
-          {isOn != 1 && comment.length == 0 && (
-            <h1 className="mt-4 text-center h2">尚無項目</h1>
-          )}
+      <div className="mx-auto">
+        <MemberMenuTag />
+        <div className="mx-0 ">
+          <div className="">
+            <MemberCollectionBar isOn={isOn} setIsOn={setIsOn} />
+          </div>
+          <div className="my-6">
+            <MemberSearchBar
+              searchWord={searchWord}
+              setSearchWord={setSearchWord}
+            />
+          </div>
+          <div className="pt-8 bg-white md:pt-0 md:px-10">
+            <h2 className="hidden py-2 border-b h2 md:block">
+              {isOn == 1 ? "我的收藏" : "商品評論"}
+            </h2>
+            {/* 如果內容為空會顯示 */}
+            {isOn == 1 && memberCollection.length == 0 && (
+              <h1 className="mt-4 text-center h2">尚無項目</h1>
+            )}
+            {isOn != 1 && comment.length == 0 && (
+              <h1 className="mt-4 text-center h2">尚無項目</h1>
+            )}
 
           {isOn == 1 &&
             memberCollection
@@ -111,12 +115,12 @@ const MemberColloction = () => {
                       </div>
                       {/* 商品價格活動 */}
 
-                      <div className="mr-1 font-normal text-right md:ml-1 ">
-                        <p className="mb-3 md:h4">商品</p>
-                        <p className="mb-3 md:h4">價格</p>
-                        <p className="md:hidden ">活動</p>
-                        <p className="hidden md:block h4">目前活動</p>
-                      </div>
+                        <div className="mr-1 font-normal text-right md:ml-1 ">
+                          <p className="mb-3 md:h4">商品</p>
+                          <p className="mb-3 md:h4">價格</p>
+                          <p className="md:hidden ">活動</p>
+                          <p className="hidden md:block h4">目前活動</p>
+                        </div>
 
                       <div className="w-[7rem] md:w-[10rem]">
                         <p className="mb-3 md:p">{name}</p>
@@ -141,22 +145,22 @@ const MemberColloction = () => {
                             /5
                           </h2>
 
-                          <div className="flex">
-                            {star(
-                              comment.find(
-                                (comment) => comment.id === product_id
-                              ).score
-                            )}
+                            <div className="flex">
+                              {star(
+                                comment.find(
+                                  (comment) => comment.id === product_id
+                                ).score
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <div className="hidden text-center md:block mx-18 ">
-                          <p className="mr-2 note">尚未評價</p>
-                          <h2 className=" h3">-/5</h2>
-                          <div className="flex">{star(0)}</div>
-                        </div>
-                      )}
-                      {/* 沒有評分 */}
+                        ) : (
+                          <div className="hidden text-center md:block mx-18 ">
+                            <p className="mr-2 note">尚未評價</p>
+                            <h2 className=" h3">-/5</h2>
+                            <div className="flex">{star(0)}</div>
+                          </div>
+                        )}
+                        {/* 沒有評分 */}
 
                       {/* 移除&購買 */}
                       <div className="flex-col md:ml-4 w-[6rem] md:w-[8rem]">
@@ -218,17 +222,54 @@ const MemberColloction = () => {
                                 .catch((e) => console.log(e));
                             }}
                           >
-                            移除收藏 <AiOutlineDelete className="icon-sm" />
-                          </span>
-                        </Button>
-                      </div>
-                    </div>
-                  </>
-                );
-              })}
-        </div>
+                            立即購買</span>
+                            <AiOutlineShoppingCart className="icon-sm" />
+                          </Button>
 
-        {isOn == 2 && <UserCommentCard isOn={isOn} setIsOn={setIsOn} searchWord={searchWord}/>}
+                          <Button
+                            size="sm"
+                            color="amber"
+                            variant="outlined"
+                            className="px-2 rounded-sm md:p md:px-4"
+                          >
+                            <span
+                              className="flex items-center "
+                              onClick={async () => {
+                                console.log(user_id);
+                                let response = await axios.delete(
+                                  `${API_URL}/user/favorite_product/${user_id}?product_id=${product_id}`
+                                );
+                                // console.log(response);
+                                toast.info("已移除收藏");
+                                axios
+                                  .get(
+                                    API_URL +
+                                      `/user/favorite_product/all_data/${currentUser.id}`
+                                  )
+                                  .then(({ data }) => {
+                                    setMemberCollection(data);
+                                  })
+                                  .catch((e) => console.log(e));
+                              }}
+                            >
+                              移除收藏 <AiOutlineDelete className="icon-sm" />
+                            </span>
+                          </Button>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+          </div>
+
+          {isOn == 2 && (
+            <UserCommentCard
+              isOn={isOn}
+              setIsOn={setIsOn}
+              searchWord={searchWord}
+            />
+          )}
+        </div>
       </div>
     </>
   );
