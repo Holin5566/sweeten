@@ -236,13 +236,32 @@ function ProductDetail() {
                               let newData = [cart[0], cartList];
                               setCart(newData);
                             } else {
-                              let newCount = { ...v, count: clickCount };
-                              let cartList = [...cart[1], newCount];
-                              let newData = [cart[0], cartList];
-                              setCart(newData);
+                              let productIndex = cart[1].findIndex(function (
+                                data,
+                                index
+                              ) {
+                                return data.name === name;
+                              });
+                              // console.log('productInx',productIndex);
+                              if (productIndex > -1) {
+                                let newCount = {
+                                  ...v,
+                                  count:
+                                    cart[1][productIndex].count + clickCount,
+                                };
+                                let cartList = [...cart[1]];
+                                cartList[productIndex] = newCount;
+                                let newData = [cart[0], cartList];
+                                setCart(newData);
+                              } else {
+                                let newCount = { ...v, count: clickCount };
+                                let cartList = [...cart[1], newCount];
+                                let newData = [cart[0], cartList];
+                                setCart(newData);
+                              }
+                              toast.success("已加入購物車");
+                              setClickCount(1);
                             }
-                            toast.success("已加入購物車");
-                            setClickCount(1);
                           }
                         }}
                       >
@@ -274,12 +293,32 @@ function ProductDetail() {
                               setCart(newData);
                               navigate("/main/cart");
                             } else {
-                              let newCount = { ...v, count: clickCount };
-                              let cartList = [...cart[1], newCount];
-                              let newData = [cart[0], cartList];
-                              setCart(newData);
-                              setClickCount(1);
-                              navigate("/main/cart");
+                              let productIndex = cart[1].findIndex(function (
+                                data,
+                                index
+                              ) {
+                                return data.name === name;
+                              });
+                              // console.log('productInx',productIndex);
+                              if (productIndex > -1) {
+                                let newCount = {
+                                  ...v,
+                                  count:
+                                    cart[1][productIndex].count + clickCount,
+                                };
+                                let cartList = [...cart[1]];
+                                cartList[productIndex] = newCount;
+                                let newData = [cart[0], cartList];
+                                setCart(newData);
+                                navigate("/main/cart");
+                              } else {
+                                let newCount = { ...v, count: clickCount };
+                                let cartList = [...cart[1], newCount];
+                                let newData = [cart[0], cartList];
+                                setCart(newData);
+                                setClickCount(1);
+                                navigate("/main/cart");
+                              }
                             }
                           }
                         }}
@@ -383,13 +422,31 @@ function ProductDetail() {
                           let newData = [cart[0], cartList];
                           setCart(newData);
                         } else {
-                          let newCount = { ...v, count: clickCount };
-                          let cartList = [...cart[1], newCount];
-                          let newData = [cart[0], cartList];
-                          setCart(newData);
+                          let productIndex = cart[1].findIndex(function (
+                            data,
+                            index
+                          ) {
+                            return data.name === name;
+                          });
+                          // console.log('productInx',productIndex);
+                          if (productIndex > -1) {
+                            let newCount = {
+                              ...v,
+                              count: cart[1][productIndex].count + clickCount,
+                            };
+                            let cartList = [...cart[1]];
+                            cartList[productIndex] = newCount;
+                            let newData = [cart[0], cartList];
+                            setCart(newData);
+                          } else {
+                            let newCount = { ...v, count: clickCount };
+                            let cartList = [...cart[1], newCount];
+                            let newData = [cart[0], cartList];
+                            setCart(newData);
+                          }
+                          toast.success("已加入購物車");
+                          setClickCount(1);
                         }
-                        toast.success("已加入購物車");
-                        setClickCount(1);
                       }
                     }}
                   >
@@ -420,13 +477,31 @@ function ProductDetail() {
                           let newData = [cart[0], cartList];
                           setCart(newData);
                         } else {
-                          let newCount = { ...v, count: clickCount };
-                          let cartList = [...cart[1], newCount];
-                          let newData = [cart[0], cartList];
-                          setCart(newData);
+                          let productIndex = cart[1].findIndex(function (
+                            data,
+                            index
+                          ) {
+                            return data.name === name;
+                          });
+                          // console.log('productInx',productIndex);
+                          if (productIndex > -1) {
+                            let newCount = {
+                              ...v,
+                              count: cart[1][productIndex].count + clickCount,
+                            };
+                            let cartList = [...cart[1]];
+                            cartList[productIndex] = newCount;
+                            let newData = [cart[0], cartList];
+                            setCart(newData);
+                          } else {
+                            let newCount = { ...v, count: clickCount };
+                            let cartList = [...cart[1], newCount];
+                            let newData = [cart[0], cartList];
+                            setCart(newData);
+                          }
+                          setClickCount(1);
+                          navigate("/main/cart");
                         }
-                        setClickCount(1);
-                        navigate("/main/cart");
                       }
                     }}
                   >
