@@ -99,7 +99,8 @@ const CourseDetail = (props) => {
               value={select}
               label="請選擇日期"
               onChange={(e) => {
-                setSelect(e.target.value);
+                console.log(e);
+                setSelect(e);
               }}
             >
               <Option value="2022/07/03(日) 10:00">2022/07/03(日) 10:00</Option>
