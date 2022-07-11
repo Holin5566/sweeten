@@ -142,7 +142,7 @@ const CourseContent = (props) => {
                 </div>
               }
               onLoad={
-                <div class="border border-primary shadow w-full h-full lg:h-96 mx-auto object-cover m-auto rounded-lg mt-10">
+                <div class="border border-primary shadow w-full h-full lg:h-96 mx-auto object-cover m-auto rounded-lg mt-10 lg:mt-0">
                   <div class="animate-load flex space-x-4 flex-col my-5 gap-10">
                     {/* 圓 */}
                     <div class="rounded-full bg-primary h-36 w-36 mx-auto"></div>
