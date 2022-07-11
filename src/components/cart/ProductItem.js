@@ -19,9 +19,7 @@ function ProductItem(props) {
       <div className="items-center py-5 mt-6 border-t md:flex">
         <div className="w-full md:w-1/4">
           <img
-            src={`http://localhost:8001/public/product/${
-              product.id 
-            }.jpg`}
+            src={`http://localhost:8001/public/product/${product.id}.jpg`}
             alt=""
             className="object-cover object-center w-full rounded-none max-h-40"
           />
@@ -31,9 +29,10 @@ function ProductItem(props) {
             <p className="font-black h4">{name}</p>
             <div className="flex items-center">
               <AiOutlineMinus
+                className="cursor-pointer"
                 onClick={() => {
-                  if(count==1)return
-                  
+                  if (count == 1) return;
+
                   const newCart = [...cart];
                   const newProduct = [...cart[1]];
                   const target = newProduct.findIndex(
@@ -49,6 +48,7 @@ function ProductItem(props) {
               />
               <p className="p-3 text-lg">{count}</p>
               <AiOutlinePlus
+                className="cursor-pointer"
                 onClick={() => {
                   const newCart = [...cart];
                   const newProduct = [...cart[1]];
@@ -70,7 +70,7 @@ function ProductItem(props) {
           <div className="flex items-center justify-between pt-4">
             <div className="flex">
               <div
-                className="flex items-center mr-5"
+                className="flex items-center mr-5 cursor-pointer"
                 onClick={() => {
                   const target = favorite.findIndex(
                     (item) => item.id === product.id
@@ -93,7 +93,7 @@ function ProductItem(props) {
                 收藏
               </div>
               <div
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => {
                   const newProduct = [...cart[1]];
                   const remove = newProduct.filter(

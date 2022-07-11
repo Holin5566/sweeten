@@ -12,15 +12,14 @@ const FloatingBt = () => {
       <AnimatePresence>
         {openOnlineHelp ? (
           <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 15
-          }}
-            
-            className=" fixed top-100 md:right-10 right-0 border-2 border-line rounded-sm bg-white z-50"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 15,
+            }}
+            className="fixed right-0 z-50 bg-white border-2 rounded-sm  top-100 md:right-10 border-line"
           >
             <motion.h5>
               <OnlineHelp />
@@ -31,7 +30,7 @@ const FloatingBt = () => {
         )}
       </AnimatePresence>
 
-      <div className=" fixed bottom-3 bg-primary rounded-full right-3 z-50 overflow-hidden">
+      {/* <div className="fixed z-50 overflow-hidden rounded-full  bottom-3 bg-primary right-3">
         <motion.IconButton
           onClick={() => {
             setOpenOnlineHelp(!openOnlineHelp);
@@ -41,10 +40,10 @@ const FloatingBt = () => {
             <RiCustomerService2Fill className="icon-lg" color="gray" />
           </IconButton>
         </motion.IconButton>
-      </div>
+      </div> */}
 
       {/* {openOnlineHelp ? <CustomerService /> : <></>}
-      <div className=" fixed bottom-3 bg-primary rounded-full right-3">
+      <div className="fixed rounded-full  bottom-3 bg-primary right-3">
         <IconButton
           variant="text"
           onClick={() => {

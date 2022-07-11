@@ -5,7 +5,7 @@ const MenuTag = ({ categoryTag }) => {
   return (
     <div className="absolute top-0 flex overflow-hidden -translate-y-full cursor-pointer">
       {categoryTag?.map((title, i) => (
-        <Tag key={title} title={title.name} i={i} id={title.id} />
+        <Tag key={title.id} title={title.name} i={i} id={title.id} />
       ))}
     </div>
   );

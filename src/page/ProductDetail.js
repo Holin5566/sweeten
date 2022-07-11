@@ -66,8 +66,8 @@ function ProductDetail() {
     let result = 0;
     for (let i = 0; i < comment.length; i++) {
       result += comment[i].score;
-      result = Math.round(result / comment.length);
     }
+    result = Math.round(result / comment.length) || "0";
     return result;
   };
 
@@ -107,7 +107,6 @@ function ProductDetail() {
       getFavProduct();
     }
   };
-
   return (
     <>
       {productDetail.map((v, i) => {
@@ -125,7 +124,7 @@ function ProductDetail() {
                     alt=""
                   />
                   {/* DEMO左側三張小圖 */}
-                  <div className="flex justify-center w-1/2 mx-auto mt-14">
+                  {/* <div className="flex justify-center w-1/2 mx-auto mt-14">
                     <img
                       className="w-1/3 mx-1"
                       src={`${process.env.PUBLIC_URL}/images/productDetail/product_demo1_upper_small.png`}
@@ -147,7 +146,7 @@ function ProductDetail() {
                       }
                       alt=""
                     />
-                  </div>
+                  </div> */}
                 </div>
                 {/* DEMO右欄 桌機板*/}
                 <div className="w-3/5 mr-10">

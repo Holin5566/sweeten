@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { sendMsg } from "../../utils/redux/chatSlice";
 
-
 const socket = io("http://localhost:8001", {
   query: {
     "my-key": "my-value",
@@ -28,7 +27,7 @@ const OnlineHelp = () => {
   return (
     <>
       <div className="mt-5 border-b-2 border-line">
-        <h1 className="pb-2 h3 px-3">線上客服</h1>
+        <h1 className="px-3 pb-2 h3">線上客服</h1>
       </div>
       <div className="flex justify-center pt-3">
         {/* <img
