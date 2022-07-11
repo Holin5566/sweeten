@@ -37,6 +37,7 @@ const MemberInformation = () => {
       // let path = `${IMAGE_URL}/user/${user.id}`;
       // let response = await axios.get(`${API_URL}/user/${user.id}`, member);
       let response = await axios.get(`${API_URL}/user/${user.id}`, member);
+      console.log(`${API_URL}/user/${user.id}`);
       setMember({
         full_name: response.data[0].full_name,
         email: response.data[0].email,

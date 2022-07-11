@@ -1,5 +1,4 @@
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { useProductState } from "../../utils/redux/hooks-redux";
 import { useCartState } from "../../utils/redux/hooks-redux";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../../utils/config";

@@ -12,6 +12,7 @@ const CourseDetail = (props) => {
   const [select, setSelect] = useState(null);
   const [inputAdult, setInputAdult] = useState(null);
   const [inputChild, setInputChild] = useState(null);
+  console.log(select);
   console.log(coursCart);
   console.log("這個是coursRedux", coursCart);
   // 課程介紹
@@ -95,7 +96,7 @@ const CourseDetail = (props) => {
           <div>
             <Select
               id="date"
-              variant="standard"
+              value={select}
               label="請選擇日期"
               onChange={(e) => {
                 setSelect(e.target.value);
