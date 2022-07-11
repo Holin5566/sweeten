@@ -49,6 +49,7 @@ const Tag = ({ title, i, id }) => {
           // console.log(list);
           // list.forEach((item) => (item.id = item.product_id));
           setProduct(response.data.data);
+          console.log('cate',response.data.data)
         };
         getFlavor();
       }}

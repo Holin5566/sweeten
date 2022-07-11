@@ -22,7 +22,7 @@ const CardProduct = () => {
     let page = [];
     for (let i = 1; i <= pageInfo.total; i++) {
       page.push(
-        <Pagination i={i} pageInfo={pageInfo} setPageInfo={setPageInfo} />
+        <Pagination i={i} pageInfo={pageInfo} setPageInfo={setPageInfo} key={i}/>
       );
     }
     return page;
@@ -78,7 +78,8 @@ const CardProduct = () => {
               <>
                 <div className="flex flex-wrap justify-around">
                   {products?.slice(index.start, index.end).map((product) => (
-                    <OneCardProduct product={product} />
+                    <OneCardProduct product={product} key={product.id}
+                    />
                   ))}
                 </div>
                 {/* ---------------------桌機分頁--------------------- */}

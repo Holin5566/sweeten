@@ -190,7 +190,7 @@ function Filter() {
             >
               <option>價格範圍</option>
               {priceOption.map((v, i) => {
-                return <option value={i}>{v}</option>;
+                return <option value={i} key={v.id}>{v}</option>;
               })}
             </select>
 
@@ -201,7 +201,7 @@ function Filter() {
             >
               <option value="">口味</option>
               {flavorOption.map((v, i) => {
-                return <option value={i}>{v.name}</option>;
+                return <option value={i} key={v.id}>{v.name}</option>;
               })}
             </select>
 
@@ -251,7 +251,7 @@ function Filter() {
               >
                 <option>價格範圍</option>
                 {priceOption.map((v, i) => {
-                  return <option value={i}>{v}</option>;
+                  return <option value={i} key={v.id}>{v}</option>;
                 })}
               </select>
 
@@ -261,7 +261,7 @@ function Filter() {
               >
                 <option value="">口味</option>
                 {flavorOption.map((v, i) => {
-                  return <option value={i}>{v.name}</option>;
+                  return <option value={i} key={v.id}>{v.name}</option>;
                 })}
               </select>
 

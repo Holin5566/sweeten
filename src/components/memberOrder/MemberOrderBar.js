@@ -16,6 +16,7 @@ function MemberOrderBar(props) {
                 setX(`${i * 100}%`);
                 setBarStep(i);
               }}
+              key={v.id}
             >
               <p>{v}</p>
             </div>
