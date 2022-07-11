@@ -52,12 +52,15 @@ function UserCommentCard(props) {
             <>
               <Card className="p-0 mt-6 rounded-sm w-60">
                 <CardBody className="text-center">
+                <div className="overflow-hidden">
                   <img
                     src={`http://localhost:8001/public/product/${id}.jpg`}
                     alt="img-blur-shadow"
-                    className="mx-auto mb-6 w-[200px]"
+                    className="mx-auto mb-6 w-[200px] h-[10rem] object-cover"
                   />
-                  <span className=" h2">{product_name}</span>
+                </div>
+                  
+                  <span className="h2 ">{product_name}</span>
                   <Typography>
                     <div className="flex items-center justify-center mt-3">
                       <span className="mr-2 h3"> {score}/5</span>

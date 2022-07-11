@@ -102,6 +102,7 @@ function CreateComment({ order, v, i }) {
             </div>
 
             <div className="md:p">
+            
               <p className="">{v.name}</p>
 
               {myComment.findIndex(
@@ -220,11 +221,11 @@ function CreateComment({ order, v, i }) {
 
           <div className="flex flex-col justify-center">
             <div className="flex ">
-              <div className="mr-2">
+              <div className="mr-2 ">
                 <p>商品</p>
               </div>
               <div>
-                <p>{v.name}</p>
+                <p className="w-[9rem]">{v.name}</p>
               </div>
             </div>
 

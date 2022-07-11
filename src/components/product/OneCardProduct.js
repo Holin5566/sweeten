@@ -84,29 +84,32 @@ const OnceCarkProduct = ({ product }) => {
   return (
     <>
       <div className=" mb-6 mx-1 xl:w-[13rem]">
-        <div className="flex flex-col items-center justify-center mr-1 ">
+        <div className="flex flex-col items-center justify-center mr-1 w-[200px]">
+        <div className="overflow-hidden w-[200px] h-[15rem]">
           <img
-            className="object-cover w-full cursor-pointer rounded-sm h-[15rem]"
+            className="  object-cover w-full cursor-pointer rounded-sm h-[15rem]"
             src={`http://localhost:8001/public/product/${
               product.id || product.product_id
             }.jpg`}
             alt="T-Shirt"
             onClick={() => {
-              navigate(`/main/product/${product.id}`);
+              navigate(`/main/product/${product.id|| product.product_id}`);
             }}
           />
+        </div>
+          
           <div className="flex items-center justify-end w-full mt-2">
-            <h4 className="w-full text-lg font-medium dark:text-gray-200">
+            <h4 className="w-full h-[2.5rem] font-medium dark:text-gray-200">
               {product.name}
             </h4>
-            <div className="mr-1 text-blue-500 p">${product.price}</div>
-            <div className="flex items-center ">
-              <AiOutlineMessage
+            <div className="mr-1 text-blue-500 h-[2.5rem]">${product.price}</div>
+            <div className="flex items-start h-[2.5rem]">
+              {/* <AiOutlineMessage
                 className="cursor-pointer icon-sm"
                 onClick={() => {
                   navigate(`/main/product/${product.id}`);
                 }}
-              />
+              /> */}
 
               {favProduct?.findIndex((item) => item.product_id === product.id) >
               -1 ? (
