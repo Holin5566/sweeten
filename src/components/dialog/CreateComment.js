@@ -22,7 +22,7 @@ function CreateComment({ order, v, i }) {
     console.log("mycomment", response.data);
   };
 
-  //生成星星ㄉfunc
+  //生成星星的function
   const getStar = (n) => {
     let result = [];
     for (let i = 1; i <= 5; i++) {

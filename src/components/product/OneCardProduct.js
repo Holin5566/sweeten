@@ -1,6 +1,6 @@
 import axios from "axios";
 import { React, useEffect, useState, editState } from "react";
-import { AiOutlineMessage, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import {  AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../utils/config";
 import { toast } from "react-toastify";
@@ -28,7 +28,7 @@ const OnceCarkProduct = ({ product }) => {
         `${API_URL}/user/favorite_product/${currentUser.id}?product_id=${product.id}`
       );
       toast.info("已從最愛移除");
-      // 抓所有最愛ㄉ商品(沒有分頁)
+      // 抓所有最愛商品(沒有分頁)
       axios
         .get(API_URL + `/user/favorite_product/all_data/${currentUser.id}`)
         .then(({ data }) => {
@@ -42,7 +42,7 @@ const OnceCarkProduct = ({ product }) => {
         product_id: product.id,
       });
       toast.success("已加入最愛");
-      // 抓所有最愛ㄉ商品(沒有分頁)
+      // 抓所有最愛商品(沒有分頁)
       axios
         .get(API_URL + `/user/favorite_product/all_data/${currentUser.id}`)
         .then(({ data }) => {

@@ -30,7 +30,7 @@ const MemberMenuTag = () => {
   return (
     <div className="absolute top-0 flex overflow-hidden -translate-y-full cursor-pointer">
       {categoryTag?.map((title, i) => (
-        <MemberTag key={title} title={title.name} i={i} id={title.id} />
+        <MemberTag key={title.id} title={title.name} i={i} id={title.id} />
       ))}
     </div>
   );

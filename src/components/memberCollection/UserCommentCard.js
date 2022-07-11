@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   Card,
@@ -13,6 +13,7 @@ import axios from "axios";
 import { API_URL } from "../../utils/config";
 import { useUserState } from "../../utils/redux/hooks-redux";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 //生成評價星星
 const star = (score) => {
@@ -49,7 +50,7 @@ function UserCommentCard(props) {
         {comment.filter((item)=>item.name?.includes(searchWord)||item.id?.includes(searchWord))?.map((comment, i) => {
           const { id, product_name, score, comment_id } = comment;
           return (
-            <>
+            <Fragment key={id}>
               <Card className="p-0 mt-6 rounded-sm w-60">
                 <CardBody className="text-center">
                 <div className="overflow-hidden">
@@ -92,18 +93,46 @@ function UserCommentCard(props) {
                     color="amber"
                     variant="outlined"
                     className="bg-white rounded-sm "
-                    onClick={async () => {
+                    // onClick={async () => {
                      
-                      await axios.delete(API_URL + `/product/comment/${comment_id}`);
-                      toast.info('已刪除評論')
-                      getComment();
-                    }}
+                    //   await axios.delete(API_URL + `/product/comment/${comment_id}`);
+                    //   toast.info('已刪除評論')
+                    //   getComment();
+
+                      onClick={async () => {
+                           
+
+                                swal({
+                                  title: "確定要刪除此評論嗎",
+                                  text: "",
+                                  icon: "warning",
+                                  buttons: ["取消", '刪除'],
+                                  dangerMode: true,
+                                }).then(async(willDelete) => {
+                                  if (willDelete) {
+                                  
+                                await  axios.delete(
+                                  API_URL + `/product/comment/${comment_id}`
+                                );
+                                // console.log(response);
+                                toast.info("已刪除評論");
+                                
+                                getComment();
+                                   
+                                  } else {
+                                    swal("您的評論未刪除");
+                                  }
+                                });
+
+                                
+                              }}
+                   
                   >
                     刪除評論
                   </Button>
                 </CardFooter>
               </Card>
-            </>
+            </Fragment>
           );
         })}
       </div>
