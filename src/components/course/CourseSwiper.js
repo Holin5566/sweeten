@@ -37,7 +37,7 @@ const CourseSwiper = (props) => {
                   onClick={() => {
                     runLoad(async () => {
                       await setSwipe(i);
-                    }, 1000);
+                    }, 100000);
                   }}
                 >
                   <div className="w-full ">

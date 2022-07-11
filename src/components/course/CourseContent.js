@@ -22,7 +22,7 @@ const CourseContent = (props) => {
                 />
               }
               onLoad={
-                <div class="relative border border-primary shadow w-full h-full mx-auto object-cover m-auto rounded-lg">
+                <div class="hidden lg:block relative border border-primary shadow w-full h-full mx-auto object-cover m-auto rounded-lg">
                   <div class="animate-load flex space-x-4 flex-col my-5 gap-10">
                     {/* 圓 */}
                     <div class="rounded-full bg-primary h-36 w-36 mx-auto"></div>
@@ -73,7 +73,7 @@ const CourseContent = (props) => {
                 />
               }
               onLoad={
-                <div class="relative border border-primary shadow w-full h-full mx-auto object-cover m-auto rounded-lg">
+                <div class="hidden lg:block relative border border-primary shadow w-full h-full mx-auto object-cover m-auto rounded-lg">
                   <div class="animate-load flex space-x-4 flex-col my-5 gap-10">
                     {/* 圓 */}
                     <div class="rounded-full bg-primary h-36 w-36 mx-auto"></div>
@@ -129,7 +129,7 @@ const CourseContent = (props) => {
           {/* <div className=" absolute lg:z-10 bg-grey-50 sm:h-80 lg:w-1/2 lg:h-[410px] lg:top-1/2 lg:-translate-y-1/2 lg:left-12 lg:translate-x-4"></div> */}
         </div>
         <div className="w-full max-w-md min-w-0 mx-auto mt-16 break-words bg-white border border-black xl:max-w-xl">
-          <div className="mx-4 -mt-6 -translate-y-16 ">
+          <div className="mx-4 -mt-6 -translate-y-16">
             {/* 第三張圖 */}
             <WhileLoading
               done={
@@ -142,7 +142,7 @@ const CourseContent = (props) => {
                 </div>
               }
               onLoad={
-                <div class="border border-primary shadow w-full h-full lg:h-96 mx-auto object-cover m-auto rounded-lg">
+                <div class="border border-primary shadow w-full h-full lg:h-96 mx-auto object-cover m-auto rounded-lg mt-10">
                   <div class="animate-load flex space-x-4 flex-col my-5 gap-10">
                     {/* 圓 */}
                     <div class="rounded-full bg-primary h-36 w-36 mx-auto"></div>
