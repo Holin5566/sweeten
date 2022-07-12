@@ -157,7 +157,7 @@ function ProductDetail() {
                       <p className="h1">{name}</p>
                       <Button
                         variant="outlined"
-                        className="border rounded-full select-none border-line text-line"
+                        className="border rounded-full shadow-none select-none border-line text-line"
                         onClick={() => {
                           currentUser.id != 0
                             ? favSwitchHandler()
@@ -212,7 +212,7 @@ function ProductDetail() {
 
                     <div className="flex justify-center ">
                       <Button
-                        className="border-2 rounded-none border-sub"
+                        className="border-2 rounded-none shadow-none border-sub"
                         variant="outlined"
                         onClick={() => {
                           if (currentUser.id == 0) {
@@ -268,8 +268,9 @@ function ProductDetail() {
                       </Button>
 
                       <Button
-                        className="ml-3 text-white border-2 rounded-none border-warning bg-warning"
+                        className="ml-3 text-white border-2 rounded-none shadow-none border-warning bg-warning"
                         variant="filled"
+                        color="orange"
                         onClick={() => {
                           if (currentUser.id === 0) {
                             toast.info("請登入會員");
@@ -340,7 +341,7 @@ function ProductDetail() {
                 <div className="flex justify-end my-4">
                   <Button
                     variant="outlined"
-                    className="mr-3 rounded-full select-none text-line border-line"
+                    className="mr-3 rounded-full shadow-none select-none text-line border-line"
                     onClick={() => {
                       currentUser.id != 0
                         ? favSwitchHandler()
@@ -398,7 +399,7 @@ function ProductDetail() {
                 {/* 加入購物車按鈕手機板 */}
                 <div className="flex justify-around my-6">
                   <Button
-                    className="px-4 py-1 border-2 rounded-none border-sub"
+                    className="px-4 py-1 border-2 rounded-none shadow-none border-sub"
                     variant="outlined"
                     onClick={() => {
                       if (currentUser.id == 0) {
@@ -453,8 +454,9 @@ function ProductDetail() {
                   </Button>
 
                   <Button
-                    className="px-4 text-white border-2 rounded-none shadow-primary border-warning bg-warning"
+                    className="px-4 text-white border-2 rounded-none shadow-none shadow-primary border-warning bg-warning"
                     variant="filled"
+                    color="orange"
                     onClick={() => {
                       if (currentUser.id == 0) {
                         toast.info("請登入會員");

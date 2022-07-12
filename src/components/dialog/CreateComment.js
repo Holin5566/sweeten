@@ -102,7 +102,6 @@ function CreateComment({ order, v, i }) {
             </div>
 
             <div className="md:p">
-            
               <p className="">{v.name}</p>
 
               {myComment.findIndex(
@@ -194,6 +193,7 @@ function CreateComment({ order, v, i }) {
               <>
                 <Button
                   size="sm"
+                  color="orange"
                   className="rounded-sm translate-y-36 bg-warning"
                   onClick={commentHandler}
                 >
@@ -329,6 +329,7 @@ function CreateComment({ order, v, i }) {
             <>
               <Button
                 size="sm"
+                color="orange"
                 className="px-10 rounded-sm bg-warning"
                 onClick={commentHandler}
               >

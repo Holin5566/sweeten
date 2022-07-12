@@ -25,7 +25,7 @@ const Card = (props) => {
   console.log(expireTime);
   //相減剩餘的時間(時間戳記)
   let restTime = Math.floor((expireTime - timeNow) / 1000);
-  // console.log(cart[1]);
+  console.log(cart[1]);
   // console.log(productPhoto);
   //---------------------------------------------拿商品的ID-串照片用
   // useEffect(() => {

@@ -29,7 +29,7 @@ const star = (score) => {
 };
 
 function UserCommentCard(props) {
-  const {searchWord}=props
+  const { searchWord } = props;
   const [comment, setComment] = useState([]);
   const [currentUser] = useUserState();
   const navigate = useNavigate();
@@ -47,94 +47,93 @@ function UserCommentCard(props) {
   return (
     <>
       <div className="flex flex-wrap justify-around px-10">
-        {comment.filter((item)=>item.name?.includes(searchWord)||item.id?.includes(searchWord))?.map((comment, i) => {
-          const { id, product_name, score, comment_id } = comment;
-          return (
-            <Fragment key={id}>
-              <Card className="p-0 mt-6 rounded-sm w-60">
-                <CardBody className="text-center">
-                <div className="overflow-hidden">
-                  <img
-                    src={`http://localhost:8001/public/product/${id}.jpg`}
-                    alt="img-blur-shadow"
-                    className="mx-auto mb-6 w-[200px] h-[10rem] object-cover"
-                  />
-                </div>
-                  
-                  <span className="h2 ">{product_name}</span>
-                  <Typography>
-                    <div className="flex items-center justify-center mt-3">
-                      <span className="mr-2 h3"> {score}/5</span>
-                      {star(score)}
+        {comment
+          .filter(
+            (item) =>
+              item.name?.includes(searchWord) || item.id?.includes(searchWord)
+          )
+          ?.map((comment, i) => {
+            const { id, product_name, score, comment_id } = comment;
+            return (
+              <Fragment key={id}>
+                <Card className="p-0 mt-6 rounded-sm w-60">
+                  <CardBody className="text-center">
+                    <div className="overflow-hidden">
+                      <img
+                        src={`http://localhost:8001/public/product/${id}.jpg`}
+                        alt="img-blur-shadow"
+                        className="mx-auto mb-6 w-[200px] h-[10rem] object-cover"
+                      />
                     </div>
-                    {/* {score == "-" ? (
+
+                    <span className="h2 ">{product_name}</span>
+                    <Typography>
+                      <div className="flex items-center justify-center mt-3">
+                        <span className="mr-2 h3"> {score}/5</span>
+                        {star(score)}
+                      </div>
+                      {/* {score == "-" ? (
                       <span>尚未評論</span>
                     ) : (
                       <span className="text-white">尚未評論</span>
                     )} */}
-                  </Typography>
-                </CardBody>
-                <CardFooter
-                  divider
-                  className="flex items-center justify-between px-5 py-3"
-                >
-                  <Button
-                    size="sm"
-                    className="rounded-sm bg-warning"
-                    onClick={() => {
-                      navigate(`/main/product/${id}`);
-                    }}
+                    </Typography>
+                  </CardBody>
+                  <CardFooter
+                    divider
+                    className="flex items-center justify-between px-5 py-3"
                   >
-                    查看所有評論
-                  </Button>
+                    <Button
+                      size="sm"
+                      color="orange"
+                      className="rounded-sm bg-warning"
+                      onClick={() => {
+                        navigate(`/main/product/${id}`);
+                      }}
+                    >
+                      查看所有評論
+                    </Button>
 
-                  <Button
-                    size="sm"
-                    color="amber"
-                    variant="outlined"
-                    className="bg-white rounded-sm "
-                    // onClick={async () => {
-                     
-                    //   await axios.delete(API_URL + `/product/comment/${comment_id}`);
-                    //   toast.info('已刪除評論')
-                    //   getComment();
+                    <Button
+                      size="sm"
+                      color="amber"
+                      variant="outlined"
+                      className="bg-white rounded-sm "
+                      // onClick={async () => {
+
+                      //   await axios.delete(API_URL + `/product/comment/${comment_id}`);
+                      //   toast.info('已刪除評論')
+                      //   getComment();
 
                       onClick={async () => {
-                           
+                        swal({
+                          title: "確定要刪除此評論嗎",
+                          text: "",
+                          icon: "warning",
+                          buttons: ["取消", "刪除"],
+                          dangerMode: true,
+                        }).then(async (willDelete) => {
+                          if (willDelete) {
+                            await axios.delete(
+                              API_URL + `/product/comment/${comment_id}`
+                            );
+                            // console.log(response);
+                            toast.info("已刪除評論");
 
-                                swal({
-                                  title: "確定要刪除此評論嗎",
-                                  text: "",
-                                  icon: "warning",
-                                  buttons: ["取消", '刪除'],
-                                  dangerMode: true,
-                                }).then(async(willDelete) => {
-                                  if (willDelete) {
-                                  
-                                await  axios.delete(
-                                  API_URL + `/product/comment/${comment_id}`
-                                );
-                                // console.log(response);
-                                toast.info("已刪除評論");
-                                
-                                getComment();
-                                   
-                                  } else {
-                                    swal("您的評論未刪除");
-                                  }
-                                });
-
-                                
-                              }}
-                   
-                  >
-                    刪除評論
-                  </Button>
-                </CardFooter>
-              </Card>
-            </Fragment>
-          );
-        })}
+                            getComment();
+                          } else {
+                            swal("您的評論未刪除");
+                          }
+                        });
+                      }}
+                    >
+                      刪除評論
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Fragment>
+            );
+          })}
       </div>
     </>
   );

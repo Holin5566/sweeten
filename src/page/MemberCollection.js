@@ -167,6 +167,7 @@ const MemberColloction = () => {
                         {/* 移除&購買 */}
                         <div className="flex-col md:ml-4 w-[6rem] md:w-[8rem]">
                           <Button
+                            color="orange"
                             size="sm"
                             className="flex items-center px-2 mb-3 rounded-sm md:px-4 md:p bg-warning"
                             onClick={() => {
@@ -214,33 +215,29 @@ const MemberColloction = () => {
                                   title: "確定要移除此筆資料嗎",
                                   text: "",
                                   icon: "warning",
-                                  buttons: ["取消", '移除'],
+                                  buttons: ["取消", "移除"],
                                   dangerMode: true,
-                                }).then(async(willDelete) => {
+                                }).then(async (willDelete) => {
                                   if (willDelete) {
-                                  
-                                await  axios.delete(
-                                  `${API_URL}/user/favorite_product/${user_id}?product_id=${product_id}`
-                                );
-                                // console.log(response);
-                                toast.info("已移除收藏");
-                                
-                                return await axios
-                                  .get(
-                                    API_URL +
-                                      `/user/favorite_product/all_data/${currentUser.id}`
-                                  )
-                                  .then(({ data }) => {
-                                    setMemberCollection(data);
-                                  })
-                                  .catch((e) => console.log(e));
-                                   
+                                    await axios.delete(
+                                      `${API_URL}/user/favorite_product/${user_id}?product_id=${product_id}`
+                                    );
+                                    // console.log(response);
+                                    toast.info("已移除收藏");
+
+                                    return await axios
+                                      .get(
+                                        API_URL +
+                                          `/user/favorite_product/all_data/${currentUser.id}`
+                                      )
+                                      .then(({ data }) => {
+                                        setMemberCollection(data);
+                                      })
+                                      .catch((e) => console.log(e));
                                   } else {
                                     swal("您的商品未移除");
                                   }
                                 });
-
-                                
                               }}
                             >
                               移除收藏 <AiOutlineDelete className="icon-sm" />

@@ -103,9 +103,12 @@ const MemberColloction = () => {
             {/* 愛心&購買 */}
             <div className="ml-4 ">
               <AiFillHeart className="mx-auto icon-xl text-sub" />
-              <button className="p-1 mt-6 text-white md:px-5 md:py-2 bg-warning p">
+              <Button
+                color="orange"
+                className="p-1 mt-6 text-white md:px-5 md:py-2 bg-warning p"
+              >
                 立即購買
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -149,9 +152,12 @@ const MemberColloction = () => {
             {/* 愛心&購買 */}
             <div className="ml-4">
               <AiFillHeart className="mx-auto icon-xl text-sub" />
-              <button className="p-1 mt-6 text-white md:px-5 md:py-2 bg-warning p">
+              <Button
+                color="orange"
+                className="p-1 mt-6 text-white md:px-5 md:py-2 bg-warning p"
+              >
                 立即購買
-              </button>
+              </Button>
             </div>
           </div>
         </div>
